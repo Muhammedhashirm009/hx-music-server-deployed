@@ -28,15 +28,14 @@ export const useFetch = async <T>({ endpoint, params, context }: FetchParams): P
 
   let selectedUserAgent = userAgents[Math.floor(Math.random() * userAgents.length)]
   if (context === ApiContextEnum.ANDROID) {
-    const mobileUserAgents = userAgents.filter(
-      (ua) => ua.includes('Mobile') || ua.includes('Android') || ua.includes('iPhone')
-    )
-    if (mobileUserAgents.length > 0) {
-      selectedUserAgent = mobileUserAgents[Math.floor(Math.random() * mobileUserAgents.length)]
-    } else {
-      selectedUserAgent =
-        'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Mobile Safari/537.36'
-    }
+    const androidUserAgents = [
+      'okhttp/4.10.0',
+      'okhttp/4.9.0',
+      'okhttp/3.12.12',
+      'JioSaavn/6.11.1 (Android; 10; Mobile)',
+      'JioSaavn/6.8.2 (Android; 9; Mobile)'
+    ]
+    selectedUserAgent = androidUserAgents[Math.floor(Math.random() * androidUserAgents.length)]
   }
 
   const response = await fetch(url.toString(), {
